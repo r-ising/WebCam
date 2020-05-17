@@ -23,6 +23,7 @@ namespace WebCam.Services
             var ffmpeg =
                 await FFmpeg.Conversions.FromSnippet.Snapshot(_webCamOptions.Stream, tempFile,
                                                               TimeSpan.Zero);
+            ffmpeg.AddParameter("-rtsp_transport tcp", ParameterPosition.PreInput);
             ffmpeg.SetOverwriteOutput(true);
             await ffmpeg.Start();
 
