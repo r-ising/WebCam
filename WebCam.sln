@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCam", "WebCam\WebCam.csproj", "{39A90853-2F43-4405-A222-CBC8BD6B0765}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{C291CCD2-B983-4352-9480-0A8CC6F5F1F7}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+	.editorconfig = .editorconfig
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A90853-2F43-4405-A222-CBC8BD6B0765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A90853-2F43-4405-A222-CBC8BD6B0765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A90853-2F43-4405-A222-CBC8BD6B0765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A90853-2F43-4405-A222-CBC8BD6B0765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
