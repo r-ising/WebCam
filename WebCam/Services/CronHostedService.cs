@@ -50,7 +50,7 @@ namespace WebCam.Services
         private async Task DoWork()
         {
             // work only at 9 am
-            if (DateTime.Now.Hour != 9)
+            if (DateTime.Now.Hour != 13)
             {
                 _logger.Log(LogLevel.Trace, "Wrong time");
                 return;
