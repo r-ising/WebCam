@@ -1,9 +1,8 @@
-namespace WebCam.Options
-{
-    public class TelegramOptions
-    {
-        public string ApiKey { get; set; }
+namespace WebCam.Options;
 
-        public string Target { get; set; }
-    }
+public class TelegramOptions
+{
+    public string ApiKey { get; set; }
+
+    public string Target { get; set; }
 }

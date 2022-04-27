@@ -1,7 +1,6 @@
-namespace WebCam.Options
+namespace WebCam.Options;
+
+public class WebCamOptions
 {
-    public class WebCamOptions
-    {
-        public string Stream { get; set; }
-    }
+    public string Stream { get; set; }
 }

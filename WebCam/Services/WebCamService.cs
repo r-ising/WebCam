@@ -5,36 +5,35 @@ using Microsoft.Extensions.Options;
 using WebCam.Options;
 using Xabe.FFmpeg;
 
-namespace WebCam.Services
+namespace WebCam.Services;
+
+public class WebCamService
 {
-    public class WebCamService
+    private readonly WebCamOptions _webCamOptions;
+
+    public WebCamService(IOptions<WebCamOptions> webCamOptions)
     {
-        private readonly WebCamOptions _webCamOptions;
+        _webCamOptions = webCamOptions.Value;
+    }
 
-        public WebCamService(IOptions<WebCamOptions> webCamOptions)
+    public async Task<byte[]> GetCurrentImage()
+    {
+        // add jpg suffix because of ffmpeg
+        var tempFile = Path.GetTempFileName() + ".jpg";
+        var ffmpeg =
+            await FFmpeg.Conversions.FromSnippet.Snapshot(_webCamOptions.Stream, tempFile,
+                                                          TimeSpan.Zero);
+        ffmpeg.AddParameter("-rtsp_transport tcp", ParameterPosition.PreInput);
+        ffmpeg.SetOverwriteOutput(true);
+        await ffmpeg.Start();
+
+        try
         {
-            _webCamOptions = webCamOptions.Value;
+            return await File.ReadAllBytesAsync(tempFile);
         }
-
-        public async Task<byte[]> GetCurrentImage()
+        finally
         {
-            // add jpg suffix because of ffmpeg
-            var tempFile = Path.GetTempFileName() + ".jpg";
-            var ffmpeg =
-                await FFmpeg.Conversions.FromSnippet.Snapshot(_webCamOptions.Stream, tempFile,
-                                                              TimeSpan.Zero);
-            ffmpeg.AddParameter("-rtsp_transport tcp", ParameterPosition.PreInput);
-            ffmpeg.SetOverwriteOutput(true);
-            await ffmpeg.Start();
-
-            try
-            {
-                return await File.ReadAllBytesAsync(tempFile);
-            }
-            finally
-            {
-                File.Delete(tempFile);
-            }
+            File.Delete(tempFile);
         }
     }
 }
